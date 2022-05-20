@@ -6,4 +6,34 @@ nav ul {
 nav li {
     list-style-type: none;
 }
-img
+header h1 {
+    text-align: center;
+    
+
+}
+#quicksearch label{
+   display: flex;
+   flex-direction: column;
+   margin-right: 10px; 
+   
+
+   
+    
+}
+#quicksearch p{
+    display: flex;
+    flex-direction: row;
+    
+}
+#quicksearch label input{
+    
+    align-self: center;
+    
+}
+#quicksearch input[type=checkbox]{
+    width: 25px;
+    height: 25px;
+    margin: 0px;
+    
+    
+}
