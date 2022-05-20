@@ -7,12 +7,11 @@ function requestPlaygroundData () {
             return data;
         });
 
-    const printData = async () => {
+    const saveData = async () => {
         const data = await jData;
-        displayPlaygrounds(data);
+        return data;
     };
-
-    printData();
+    return saveData();
 }
 
 function displayPlaygrounds(pgData) {
