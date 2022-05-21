@@ -37,7 +37,7 @@ header h1 {
     
     
 }
- div img{
+ #top3 img {
     border-radius: 4px;
     padding: 5px;
     width: 300px;
@@ -45,6 +45,12 @@ header h1 {
     margin: 0px;
     margin-left: 55px;
 
+}
+#top3 div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
 }
 h1{
     color: orange;
@@ -62,13 +68,21 @@ h2{
 
     }
      ul li a {
-
+        
         color: rgb(226, 43, 150);
         font-family:cursive;
         font-weight: bolder;
         font: size 35px; 
-        
-        
+    }
+    #BOY img{
+     
+    padding: 5px;
+    width: 75px;
+    height: 75px;
+    margin: 0px;
+    margin-left: 300px;
+    
+    
 
-
+        
     }
