@@ -48,15 +48,27 @@ header h1 {
 }
 h1{
     color: orange;
-    font-family:'Courier New', Courier, monospace;
+    font-family:cursive;
     font-size: 45px;
     font-weight:bolder;
 
 }
 h2{
     color:rgb(255, 175, 26);
-    font-family:Arial, Helvetica, sans-serif ;
+    font-family:cursive ;
     font-size: 25px;
     font-weight:500 ;
+ 
 
-}
+    }
+     ul li a {
+
+        color: rgb(226, 43, 150);
+        font-family:cursive;
+        font-weight: bolder;
+        font: size 35px; 
+        
+        
+
+
+    }
