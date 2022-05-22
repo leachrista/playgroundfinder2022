@@ -74,7 +74,7 @@ h2{
         color: rgb(226, 43, 150);
         font-family:cursive;
         font-weight: bolder;
-        font: size 35px; 
+        font-size: 35px;
     }
     #quicksearch article{
         
@@ -88,7 +88,7 @@ h2{
     body{
         display: grid;
         grid-template-columns: 2fr 1fr ;
-        grid-row: auto auto auto auto;
+        grid-auto-rows: auto auto auto ;
         grid-template-areas:
         "cHead cHead "
         "cNav cNav "
@@ -100,7 +100,7 @@ h2{
     main{
         display: grid;
         grid-template-columns: 2fr 1fr ;
-        grid-row: auto auto auto auto;
+        grid-auto-rows: auto auto auto ;
         grid-template-areas:
         "mquicksearch mweather "
         "mtop3 mtop3 "
