@@ -130,12 +130,17 @@ h2{
         grid-area: mweather ;
         margin-left: auto;
         margin-right: 0px;
+        align-self: end;
     }
     #top3{
-        grid-area:mtop3 ;
+        grid-area:mtop3;
+        margin-bottom: 50px;
     }
     #map{
         grid-area: mmap;
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
     }
    #weather img{
        width:400px;
