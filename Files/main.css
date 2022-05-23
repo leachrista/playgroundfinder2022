@@ -41,14 +41,14 @@ nav li {
     width: 300px;
     height: 200px;
     margin: 0px;
-    margin-left: 55px;
+
 
 }
 #top3 div{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    
+    ;
 }
 #welcome{
     text-align: center;
