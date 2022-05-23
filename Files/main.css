@@ -62,6 +62,7 @@ h2{
     font-family:cursive ;
     font-weight:500 ;
     margin: 0px;
+    font-size: 35px;
  
 
     }
@@ -71,12 +72,7 @@ h2{
         color: rgb(245, 99, 194);
         font-family:cursive;
         font-weight: bolder;
-<<<<<<< HEAD
-        font: size 40px; 
-        
-=======
-        font-size: 35px;
->>>>>>> ecd57c1a912175f973cdaa9abec3364043967528
+        font-size: 25px;
     }
     #quicksearch article{
         
@@ -90,10 +86,7 @@ h2{
     body{
         display: grid;
         grid-template-columns: 2fr 1fr ;
-<<<<<<< HEAD
-=======
         grid-auto-rows: auto auto auto ;
->>>>>>> ecd57c1a912175f973cdaa9abec3364043967528
         grid-template-areas:
         "cHead cHead "
         "cNav cNav "
@@ -146,8 +139,14 @@ h2{
    #weather img{
        width:400px;
       
-   }#search{
+   }
+   #search{
        border-radius: 5px;
+       width: 230px ;
+   }
+   #weather h2{
+       text-align: center;
+       
    }
    
    
