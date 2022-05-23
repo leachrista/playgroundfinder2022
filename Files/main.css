@@ -71,8 +71,12 @@ h2{
         color: rgb(245, 99, 194);
         font-family:cursive;
         font-weight: bolder;
+<<<<<<< HEAD
         font: size 40px; 
         
+=======
+        font-size: 35px;
+>>>>>>> ecd57c1a912175f973cdaa9abec3364043967528
     }
     #quicksearch article{
         
@@ -86,6 +90,10 @@ h2{
     body{
         display: grid;
         grid-template-columns: 2fr 1fr ;
+<<<<<<< HEAD
+=======
+        grid-auto-rows: auto auto auto ;
+>>>>>>> ecd57c1a912175f973cdaa9abec3364043967528
         grid-template-areas:
         "cHead cHead "
         "cNav cNav "
@@ -102,7 +110,7 @@ h2{
     main{
         display: grid;
         grid-template-columns: 2fr 1fr ;
-        grid-row: auto auto auto auto;
+        grid-auto-rows: auto auto auto ;
         grid-template-areas:
         "mquicksearch mweather "
         "mtop3 mtop3 "
