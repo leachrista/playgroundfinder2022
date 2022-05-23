@@ -38,10 +38,10 @@ nav li {
  #top3 img {
     border-radius: 4px;
     padding: 5px;
-    width: 300px;
+    width: 275px;
     height: 200px;
     margin: 0px;
-    margin-left: 55px;
+    
 
 }
 #top3 div{
@@ -93,6 +93,7 @@ h2{
         "cMain cMain ";
         
         height: 100%;
+       max-width: 100%;
         background-color: rgb(254, 254, 79);
         padding:0 ;
         
