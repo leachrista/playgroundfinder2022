@@ -3,14 +3,13 @@
 const http = require('http');
 let pgData;
 const requestListener = function (req, res) {
+    console.log("received request!");
+    res.end(JSON.stringify(pgData));
 }
 
 const server = http.createServer(requestListener);
 
 pgData = requestPlaygroundData();
 
-function getPlaygroundData() {
-    return pgData;
-}
 
 server.listen(63847);
