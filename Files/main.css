@@ -96,6 +96,7 @@ body {
     max-width: 100%;
     background-color: rgb(254, 254, 79);
     padding: 0;
+    font-family: cursive;
 }
 
 main {
@@ -145,6 +146,18 @@ main {
     display: flex;
     flex-direction: row;
     margin-left: auto;
+}
+#map article {
+    width: 30%;
+    margin-left: auto;
+}
+
+#map p {
+    font-size: larger;
+    margin-right: 30px;
+}
+#map img {
+    width: 600px;
 }
 
 #weather img {
