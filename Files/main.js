@@ -45,7 +45,7 @@ function displayPlaygrounds(pgData) {
     let pgList = document.querySelector("main ul");
     pgData.forEach (pg => {
         let pgLi = document.createElement("li");
-        pgLi.textContent = pg;
+        pgLi.textContent = pg.name + " " + pg.lat;
         pgList.append(pgLi);
     });
 

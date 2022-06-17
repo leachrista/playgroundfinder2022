@@ -60,21 +60,21 @@ const dummyData = JSON.stringify ({
 
 class PlayGround {
     constructor(id, name, coordinatesLong, coordinatesLat){
-        this.id = id;
+        this.pgId = id;
         this.name = name;
         this.long = coordinatesLong;
         this.lat = coordinatesLat;
     }
 }
 class PlaygroundModel {
-    static PG_ID = 1;
 
     constructor() {
         this.playgrounds = new Map();
     }
 
     addPlayground(playground) {
-        this.playgrounds.set(PlaygroundModel.PG_ID++, playground);
+        this.playgrounds.set(playground.pgId, playground);
+        console.log(playground.name);
     }
 
     getPgData() {
@@ -94,8 +94,9 @@ async function loadPlaygroundData () {
 
     const pgData = JSON.parse(pgString);
     pgData.features.forEach(pg => {
-        model.addPlayground(pg.properties.objectId, pg.properties.ANL_NAME,
-            pg.geometry.coordinates[0], pg.geometry.coordinates[1]);
+        const playground = new PlayGround(pg.properties.objectId, pg.properties.ANL_NAME,
+            pg.geometry.coordinates[0], pg.geometry.coordinates[1])
+        model.addPlayground(playground);
     })
 }
 
