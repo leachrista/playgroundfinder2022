@@ -1,0 +1,20 @@
+
+p {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+img {
+    max-width: 30%;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+
+}
+
+main p {
+    margin-left: 30px;
+    font-size: large;
+}

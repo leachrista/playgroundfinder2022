@@ -1,8 +1,176 @@
 nav ul {
     display: flex;
     justify-content: space-evenly;
+    margin: 0px;
+
 }
 
 nav li {
     list-style-type: none;
+}
+
+nav li a {
+
+    color: rgb(245, 99, 194);
+    font-family: cursive;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+#quicksearch label {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+
+
+}
+
+#quicksearch p {
+    display: flex;
+    flex-direction: row;
+
+}
+
+#quicksearch label input {
+
+    align-self: center;
+
+}
+
+#quicksearch input[type=checkbox] {
+    width: 25px;
+    height: 25px;
+    margin: 0px;
+
+
+}
+
+#top3 img {
+    border-radius: 4px;
+    width: 275px;
+    height: 200px;
+    margin: 0px;
+
+
+}
+
+#top3 div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#welcome {
+    text-align: center;
+    color: orangered;
+    font-family: cursive;
+    font-size: 60px;
+    font-weight: bolder;
+}
+
+h2 {
+    color: orangered;
+    font-family: cursive;
+    font-weight: 500;
+    margin: 0px;
+    font-size: 35px;
+}
+
+#quicksearch article {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    margin: 0px;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-auto-rows: auto auto auto;
+    grid-template-areas:
+        "cHead cHead "
+        "cNav cNav "
+        "cMain cMain ";
+
+    height: 100%;
+    max-width: 100%;
+    background-color: rgb(254, 254, 79);
+    padding: 0;
+    font-family: cursive;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-auto-rows: auto auto auto;
+    grid-template-areas:
+        "mquicksearch mweather "
+        "mtop3 mtop3 "
+        "mmap mmap ";
+
+    height: 100%;
+    margin-left: 5px;
+}
+
+header {
+    grid-area: cHead;
+}
+
+nav {
+    grid-area: cNav;
+}
+
+main {
+    grid-area: cMain;
+}
+
+#quicksearch {
+    grid-area: mquicksearch;
+
+}
+
+#weather {
+    grid-area: mweather;
+    margin-left: auto;
+    margin-right: 0px;
+    align-self: end;
+}
+
+#top3 {
+    grid-area: mtop3;
+    margin-bottom: 50px;
+}
+
+#map {
+    grid-area: mmap;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+}
+#map article {
+    width: 30%;
+    margin-left: auto;
+}
+
+#map p {
+    font-size: larger;
+    margin-right: 30px;
+}
+#map img {
+    width: 600px;
+}
+
+#weather img {
+    width: 400px;
+
+}
+
+#search {
+    border-radius: 5px;
+    width: 230px;
+}
+
+#weather h2 {
+    text-align: center;
+
 }
