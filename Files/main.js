@@ -14,8 +14,6 @@ async function getPgDataFromServer() {
 
 
 function displayPlaygrounds(pgData) {
-    //pgData.awaitPromise;
-    //const pString = pgData;
     console.log("... displaying response");
     let pTest = document.querySelector("main p");
     console.log(pgData);

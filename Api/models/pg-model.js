@@ -88,12 +88,11 @@ class PlaygroundModel {
         this.playgrounds = new Map();
         this.dataLoaded = false;
         this.live = false;
-        this.loadPgData()
+        this.loadPgData(); // NOTE: can it cause problems if this is done here??
     }
 
     addPlayground(playground) {
         this.playgrounds.set(playground.pgId, playground);
-        //console.log(playground.name);
     }
 
     // returns an Array of all loaded playgrounds
@@ -116,7 +115,6 @@ class PlaygroundModel {
         if (!this.live) {
             console.log("loading dummy data");
             const pgData = JSON.parse(DUMMY_DATA);
-            // console.log(pgData);
             pgData.features.forEach(pg => {
                 const playground = PlayGround.buildFrom(pg);
                 this.addPlayground(playground);
@@ -131,9 +129,6 @@ class PlaygroundModel {
 
             const saveData = async () => {
                 const data = await jData;
-                //console.log(data);
-                //const pgData = JSON.parse(data.json());
-                //console.log(pgData);
                 data.features.forEach(pg => {
                     const playground = PlayGround.buildFrom(pg);
 
@@ -152,38 +147,3 @@ class PlaygroundModel {
 const model = new PlaygroundModel();
 
 module.exports = model;
-
-/*
-async function loadPlaygroundData () {
-    console.log("getting pg data from webservice...")
-    const pgString = await fetchPgData(true);
-
-    const pgData = JSON.parse(pgString);
-    pgData.features.forEach(pg => {
-        const playground = new PlayGround(pg.properties.OBJECTID, pg.properties.ANL_NAME,
-            pg.geometry.coordinates[0], pg.geometry.coordinates[1])
-        model.addPlayground(playground);
-    })
-}
-
-async function fetchPgData(live) {
-    if (!live) {
-        return dummyData;
-    } else {
-        const jData = fetch(BASE_URL)
-            .then(response => response.json())
-            .then((data) => {
-                return data;
-            });
-
-        const saveData = async () => {
-            const data = await jData;
-            return data;
-        };
-        return saveData();
-    }
-
-
-}
-*/
-
