@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const express = require('express');
 const pgRouter = require('./api/routes/pg-router');
+const fetch = require("node-fetch");
 
 const app = express();
 const port = process.env.PORT ?? 3000;

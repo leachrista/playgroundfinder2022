@@ -10,28 +10,6 @@ async function getPgDataFromServer() {
                 displayPlaygrounds(data);
 
         })
-
-    /*
-
-        console.log(jData.body.toString());
-
-        console.log("preparing to fetch...");
-        const jData = fetch (BASE_URL)
-            .then(response => response.json())
-            .then((data) => {
-                return data;
-            });
-
-        const displayData = async () => {
-            console.log("... awaiting response...");
-            const data = await jData;
-            console.log(await data);
-            console.log("forwarding data");
-            return data;
-        };
-
-*/
-    //displayPlaygrounds(pData);
 }
 
 
