@@ -6,7 +6,7 @@ class PgController {
     }
 
     getPgDetails(req, res) {
-        res.send(model.getPgDetails(req.params.id));
+        res.send(model.getPgDetails(req.params.id)); //da mach ich ID und dann sollte es spielplatz mit entsprechender ID gehen
     }
 
 }
