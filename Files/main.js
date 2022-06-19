@@ -1,12 +1,20 @@
-const BASE_URL ="http://localhost:3000/api/pg-data";
+const PG_ALL_URL ="http://localhost:3000/api/pg-data";
+const WEATHER_BASE_URL = "https://api.openweathermap.org/data/3.0/onecall"
+// TODO: move key to non-staged file
+const WEATHER_API_KEY = "d1fd8e5063ff44d3f4e498c992c89705";
 
 document.addEventListener("DOMContentLoaded", function (event) {
     getPgDataFromServer();
 });
 
+async function getWeatherData (lat, long) {
+    const url = WEATHER_BASE_URL + "?lat=" + lat + "&long=" + long + "&appid=" + WEATHER_API_KEY;
+        //?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+}
+
 async function getPgDataFromServer() {
 
-        fetch (BASE_URL)
+        fetch (PG_ALL_URL)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
