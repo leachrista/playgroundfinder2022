@@ -1,15 +1,29 @@
 const PG_ALL_URL ="http://localhost:3000/api/pg-data";
-const WEATHER_BASE_URL = "https://api.openweathermap.org/data/3.0/onecall"
-// TODO: move key to non-staged file
+const WEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
+// TODO: move key to non-versioned file
 const WEATHER_API_KEY = "d1fd8e5063ff44d3f4e498c992c89705";
 
 document.addEventListener("DOMContentLoaded", function (event) {
     getPgDataFromServer();
+    getWeatherData(48.2082, 16.3738);
 });
 
 async function getWeatherData (lat, long) {
-    const url = WEATHER_BASE_URL + "?lat=" + lat + "&long=" + long + "&appid=" + WEATHER_API_KEY;
-        //?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+    const url = new URL(WEATHER_BASE_URL);
+    url.searchParams.append("lat", lat);
+    url.searchParams.append("lon",long);
+    url.searchParams.append( "appid", WEATHER_API_KEY);
+
+    const weatherRes = await fetch(url.toString());
+    const weather = await weatherRes.json();
+    //  http://openweathermap.org/img/wn/10d@2x.png
+    console.log(weather.list[1]);
+    const weatherIMG = document.querySelector("#weather img");
+    weatherIMG.src =  "http://openweathermap.org/img/wn/" + weather.list[1].weather[0].icon + "@2x.png";
+    const weatherP = document.createElement("p");
+    weatherP.textContent = weather.list[1].dt_txt;
+    const weatherDiv = document.querySelector("#weather")
+    weatherDiv.append(weatherP);
 }
 
 async function getPgDataFromServer() {
