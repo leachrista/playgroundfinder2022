@@ -1,57 +1,45 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+// import "./playgroundfinder";
+const LOGINURL = "http://localhost:3000/api/login";
 
-import "./playgroundfinder";
 
-function App() {
-    // React States
-    const [errorMessages, setErrorMessages] = useState({});
-    const [isSubmitted, setIsSubmitted] = useState(false);
+const usernameInput = document.querySelector("#username");
+const passwordInput = document.querySelector("#password");
+const errorContainer = document.querySelector("#errorContainer");
 
-    // User Login info
-    const database = [
-        {
-            username: "user1",
-            password: "pass1"
+const handleSubmit = async () => {
+    //Prevent page reload
+
+    const uname = usernameInput.value;
+    const pass = passwordInput.value;
+
+    if(!uname || !pass) {
+        errorContainer.innerText = "You must fill the username and password fields";
+        return 0;
+    }
+
+    const userData = {
+        username: uname,
+        password: pass
+    }
+
+    const restest = await fetch(LOGINURL, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
         },
-        {
-            username: "user2",
-            password: "pass2"
-        }
-    ];
+        body: JSON.stringify(userData)
+    })
+        .then(response => response.json())
 
-    const errors = {
-        uname: "invalid username",
-        pass: "invalid password"
-    };
+    if(restest.statusCde === 400) {
+        errorContainer.innerText = restest.message;
+        return 0;
+    }
 
-    const handleSubmit = (event) => {
-        //Prevent page reload
-        event.preventDefault();
+    // login success
+    localStorage.setItem("loggedIn", true);
+    localStorage.setItem("sessionId", restest.sessionId);
+    localStorage.setItem("user", restest.user);
+    window.location.href = "/";
+};
 
-        var { uname, pass } = document.forms[0];
-
-        // Find user login info
-        const userData = database.find((user) => user.username === uname.value);
-
-        // Compare user info
-        if (userData) {
-            if (userData.password !== pass.value) {
-                // Invalid password
-                setErrorMessages({ name: "pass", message: errors.pass });
-            } else {
-                setIsSubmitted(true);
-                console.log(location.href);
-                btn.addEventLister("click", (eo) =>{
-                    location.href = "playgroundfinder\Files\main.html";
-                })
-
-            }
-        } else {
-            // Username not found
-            setErrorMessages({ name: "uname", message: errors.uname });
-        }
-    };
-
-
-}
