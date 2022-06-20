@@ -57,9 +57,13 @@ function displayPlaygrounds(pgData) {
     let top3Div = document.querySelector("#top3 div");
     for (let i = 0; i < 3; i++) {
         let pgArt = document.createElement("article");
+        pgArt.id = pgData[i].pgId;
         let pgImg = document.createElement("img");
         pgImg.src = "Images/Playground1.jpg";
-        pgArt.append(pgImg, pgData[i].name, ", ", pgData[i].district, ". Bezirk")
+        let pgA = document.createElement("a");
+        pgA.href = "pgDetails.html?pgId=" + pgData[i].pgId;
+        pgA.textContent = pgData[i].name + ", " + pgData[i].district + ". Bezirk"
+        pgArt.append(pgImg, pgA)
         top3Div.append(pgArt);
     }
 

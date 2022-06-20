@@ -6,7 +6,8 @@ class PgController {
     }
 
     getPgDetails(req, res) {
-        res.send(model.getPgDetails(req.params.id));
+        console.log(req.params);
+        res.send(model.getPgDetails(req.params.pgId));
     }
 
 }

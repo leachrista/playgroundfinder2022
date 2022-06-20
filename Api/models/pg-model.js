@@ -115,10 +115,12 @@ class PlaygroundModel {
 
     // returns the data for the specific playground identified by its pgId
     getPgDetails(pgId) {
+        console.log("pg details request received for pg " + pgId);
+        pgId = Number(pgId);
         if(!this.dataLoaded) {
             this.loadPgData();
         }
-        const details = [this.playgrounds.get(pgId), this.pgDetails.get(pgId)]
+        const details = [this.playgrounds.get(pgId), this.pgDetails.get(pgId)];
         return details;
     }
 
@@ -164,7 +166,6 @@ class PlaygroundModel {
             const detailsJson = JSON.parse(data.toString());
 
             // print JSON object
-            console.log(detailsJson);
             detailsJson.forEach(det => {
                 const pgD = new PlaygroundDetails();
                 det.reviews.forEach(rev => {
@@ -172,7 +173,6 @@ class PlaygroundModel {
                 })
                 this.pgDetails.set(det.pgId, pgD);
             })
-            console.log(this.pgDetails);
         });
     }
 }
