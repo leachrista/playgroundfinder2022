@@ -1,5 +1,6 @@
 const BASE_URL = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SPIELPLATZPUNKTOGD&srsName=EPSG:4326&outputFormat=json";
 const fetch = require('node-fetch');
+const fs = require('fs');
 
 const DUMMY_DATA = JSON.stringify ({
     "type": "FeatureCollection",
@@ -62,7 +63,7 @@ const DUMMY_DATA = JSON.stringify ({
 // 3 playground entries stored statically for testing purposes
 // TODO: remember to turn on live data!!
 
-class PlayGround {
+class Playground {
     // this constructor is only for testing purposes! production code should use buildFrom()!
     constructor(id, name, coordinatesLong, coordinatesLat){
         this.pgId = id;
@@ -72,7 +73,7 @@ class PlayGround {
     };
 
     static buildFrom(raw) {
-        const pg = new PlayGround();
+        const pg = new Playground();
         pg.pgId = raw.properties.OBJECTID;
         pg.name = raw.properties.ANL_NAME;
         pg.long = raw.geometry.coordinates[0]
@@ -82,13 +83,22 @@ class PlayGround {
         return pg;
     }
 }
+
+class PlaygroundDetails {
+    constructor() {
+        this.reviews = new Map();
+    }
+}
+
 class PlaygroundModel {
 
     constructor() {
         this.playgrounds = new Map();
+        this.pgDetails = new Map();
         this.dataLoaded = false;
         this.live = false;
         this.loadPgData(); // NOTE: can it cause problems if this is done here??
+        this.loadPgDetails();
     }
 
     addPlayground(playground) {
@@ -108,7 +118,8 @@ class PlaygroundModel {
         if(!this.dataLoaded) {
             this.loadPgData();
         }
-        return this.playgrounds.get(pgId);
+        const details = [this.playgrounds.get(pgId), this.pgDetails.get(pgId)]
+        return details;
     }
 
     loadPgData() {
@@ -116,7 +127,7 @@ class PlaygroundModel {
             console.log("loading dummy data");
             const pgData = JSON.parse(DUMMY_DATA);
             pgData.features.forEach(pg => {
-                const playground = PlayGround.buildFrom(pg);
+                const playground = Playground.buildFrom(pg);
                 this.addPlayground(playground);
             })
         } else {
@@ -130,7 +141,7 @@ class PlaygroundModel {
             const saveData = async () => {
                 const data = await jData;
                 data.features.forEach(pg => {
-                    const playground = PlayGround.buildFrom(pg);
+                    const playground = Playground.buildFrom(pg);
 
                     // !!IMPORTANT!! maybe next line needs to read "model." rather than "this." to work from
                     // all contexts??
@@ -141,6 +152,28 @@ class PlaygroundModel {
             saveData();
         }
         this.dataLoaded = true;
+    }
+
+    loadPgDetails() {
+        fs.readFile('Data/pgDetails.json', 'utf-8', (err, data) => {
+            if (err) {
+                throw err;
+            }
+
+            // parse JSON object
+            const detailsJson = JSON.parse(data.toString());
+
+            // print JSON object
+            console.log(detailsJson);
+            detailsJson.forEach(det => {
+                const pgD = new PlaygroundDetails();
+                det.reviews.forEach(rev => {
+                    pgD.reviews.set(rev.user, rev.text);
+                })
+                this.pgDetails.set(det.pgId, pgD);
+            })
+            console.log(this.pgDetails);
+        });
     }
 }
 

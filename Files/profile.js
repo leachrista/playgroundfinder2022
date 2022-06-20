@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function (event) {
-    const usrImg = document.createElement("img")
+    const welcome = document.querySelector("#hello");
+    welcome.textContent = "Hello " + localStorage.getItem("user") + "!";
 });
 
