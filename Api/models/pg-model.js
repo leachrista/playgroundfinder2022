@@ -86,7 +86,14 @@ class Playground {
 
 class PlaygroundDetails {
     constructor() {
-        this.reviews = new Map();
+        this.reviews = [];
+    }
+}
+
+class PlaygroundReview {
+    constructor(user, text) {
+        this.user = user;
+        this.text = text;
     }
 }
 
@@ -169,8 +176,8 @@ class PlaygroundModel {
             detailsJson.forEach(det => {
                 const pgD = new PlaygroundDetails();
                 det.reviews.forEach(rev => {
-                    pgD.reviews.set(rev.user, rev.text);
-                })
+                    pgD.reviews.push(new PlaygroundReview(rev.user, rev.text));
+                });
                 this.pgDetails.set(det.pgId, pgD);
             })
         });
