@@ -6,6 +6,20 @@ const WEATHER_API_KEY = "d1fd8e5063ff44d3f4e498c992c89705";
 document.addEventListener("DOMContentLoaded", function (event) {
     getPgDataFromServer();
     getWeatherData(48.2082, 16.3738);
+    const user = localStorage.getItem("user");
+
+    const navBar = document.querySelector("nav ul");
+    const item = document.createElement("li");
+    const anchor = document.createElement("a");
+    if (!user) {
+        anchor.href = "login2.html";
+        anchor.textContent = "LOGIN";
+    } else {
+        anchor.href = "profile.html";
+        anchor.textContent = user;
+    }
+    item.append(anchor);
+    navBar.append(item);
 });
 
 async function getWeatherData (lat, long) {
