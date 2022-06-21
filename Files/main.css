@@ -10,12 +10,19 @@ nav li {
 }
 
 nav li a {
-
     color: rgb(245, 99, 194);
     font-family: cursive;
-    font-weight: bolder;
+    font-weight: bold;
     font-size: 25px;
 }
+
+nav li a:focus {
+    font-weight: revert;
+}
+nav li a:hover {
+    font-weight: revert;
+}
+
 
 #quicksearch label {
     display: flex;
@@ -68,13 +75,6 @@ nav li a {
     font-weight: bolder;
 }
 
-h2 {
-    color: orangered;
-    font-family: cursive;
-    font-weight: 500;
-    margin: 0px;
-    font-size: 35px;
-}
 
 #quicksearch article {
     display: flex;
@@ -85,18 +85,14 @@ h2 {
 
 body {
     display: grid;
-    grid-template-columns: 2fr 1fr;
     grid-auto-rows: auto auto auto;
     grid-template-areas:
-        "cHead cHead "
-        "cNav cNav "
-        "cMain cMain ";
+        "cNav"
+        "cHead"
+        "cMain";
 
     height: 100%;
-    max-width: 100%;
-    background-color: rgb(254, 254, 79);
     padding: 0;
-    font-family: cursive;
 }
 
 main {
@@ -110,6 +106,7 @@ main {
 
     height: 100%;
     margin-left: 5px;
+    grid-area: cMain;
 }
 
 header {
@@ -118,10 +115,6 @@ header {
 
 nav {
     grid-area: cNav;
-}
-
-main {
-    grid-area: cMain;
 }
 
 #quicksearch {
@@ -161,7 +154,7 @@ main {
 }
 
 #weather img {
-    width: 400px;
+    width: 300px;
 
 }
 

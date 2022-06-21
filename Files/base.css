@@ -1,0 +1,16 @@
+a:hover {font-weight: bolder}
+a:focus {font-weight: bolder}
+
+h2 {
+    color: orangered;
+    font-family: cursive;
+    font-weight: 500;
+    margin: 0px;
+    font-size: 35px;
+}
+
+body {
+    max-width: 100%;
+    background-color: rgb(254, 254, 79);
+    font-family: cursive;
+}

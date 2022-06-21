@@ -20,16 +20,21 @@ async function getDetails (pgId) {
     document.querySelector("#location").textContent = detailsData[0].district + ". Bezirk";
     document.querySelector("#image").src = "Images/Playground1.jpg";
     const reviewList = document.querySelector("#reviews");
-    console.log(detailsData[1].reviews.length);
-    console.log(detailsData[1].reviews);
-    detailsData[1].reviews.forEach(rev => {
+    if (!detailsData[1]) {
         const revLi = document.createElement("li");
-        const revName = document.createElement("h3");
-        revName.textContent = rev.user;
-        const revTxt = document.createElement("p");
-        revTxt.textContent = rev.text;
-        revLi.append(revName, revTxt);
-        reviewList.append(revLi);
-        console.log(revLi);
-    })
+        revLi.textContent ="There are no reviews yet - why not write one?";
+        reviewList.append(revLi)
+    } else {
+        detailsData[1].reviews.forEach(rev => {
+            const revLi = document.createElement("li");
+            const revName = document.createElement("h3");
+            revName.textContent = rev.user;
+            const revTxt = document.createElement("p");
+            revTxt.textContent = rev.text;
+            revLi.append(revName, revTxt);
+            reviewList.append(revLi);
+            console.log(revLi);
+        });
+    }
+    console.log(detailsData);
 }
