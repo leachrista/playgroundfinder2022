@@ -43,3 +43,9 @@ const handleSubmit = async () => {
     window.location.href = "/";
 };
 
+const logout = () => {
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("sessionId");
+    localStorage.removeItem("user");
+    window.location.href = "/";
+}

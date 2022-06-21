@@ -1,28 +1,21 @@
+nav {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    background: yellow;
+}
+
 nav ul {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 0px;
-
-}
-
-nav li {
     list-style-type: none;
+    display: flex;
+    gap: 15px;
+    justify-content: space-evenly;
 }
 
-nav li a {
-    color: rgb(245, 99, 194);
-    font-family: cursive;
+nav ul li a {
+    text-decoration: none;
     font-weight: bold;
-    font-size: 25px;
 }
-
-nav li a:focus {
-    font-weight: revert;
-}
-nav li a:hover {
-    font-weight: revert;
-}
-
 
 #quicksearch label {
     display: flex;
@@ -65,6 +58,13 @@ nav li a:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+#top3 article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 #welcome {
@@ -127,6 +127,9 @@ nav {
     margin-left: auto;
     margin-right: 0px;
     align-self: end;
+
+    display: flex;
+    align-items: center;
 }
 
 #top3 {
@@ -154,7 +157,7 @@ nav {
 }
 
 #weather img {
-    width: 300px;
+    width: 100px;
 
 }
 

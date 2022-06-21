@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     } else {
         anchor.href = "profile.html";
         anchor.textContent = user;
+        //anchor.onclick = logout()
     }
     item.append(anchor);
     navBar.append(item);
