@@ -3,11 +3,13 @@
     "reviews": [
       {
         "user": "Florian",
-        "text": "No dinosaurs! 2/5!"
+        "text": "No dinosaurs! 2/5!",
+        "revId": "928551-0"
       },
       {
         "user": "Rincewind",
-        "text": "Boring! 8/5!"
+        "text": "Boring! 8/5!",
+        "revId": "928551-1"
       }
     ]
   }

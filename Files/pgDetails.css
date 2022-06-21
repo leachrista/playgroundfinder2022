@@ -9,3 +9,13 @@ li h3 {
 li p {
     margin-top: 5px;
 }
+
+#writeReview {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+}
+
+#writeReview p {
+    margin-left: auto;
+}
