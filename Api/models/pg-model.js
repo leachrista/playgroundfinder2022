@@ -1,6 +1,7 @@
 const BASE_URL = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SPIELPLATZPUNKTOGD&srsName=EPSG:4326&outputFormat=json";
 const fetch = require('node-fetch');
 const fs = require('fs');
+const {request} = require("express");
 
 const DUMMY_DATA = JSON.stringify ({
     "type": "FeatureCollection",
@@ -87,13 +88,15 @@ class Playground {
 class PlaygroundDetails {
     constructor() {
         this.reviews = [];
+        this.nextRevNr = 0;
     }
 }
 
 class PlaygroundReview {
-    constructor(user, text) {
+    constructor(user, text, revId) {
         this.user = user;
         this.text = text;
+        this.revId = revId;
     }
 }
 
@@ -176,11 +179,91 @@ class PlaygroundModel {
             detailsJson.forEach(det => {
                 const pgD = new PlaygroundDetails();
                 det.reviews.forEach(rev => {
-                    pgD.reviews.push(new PlaygroundReview(rev.user, rev.text));
+                    pgD.reviews.push(new PlaygroundReview(rev.user, rev.text, rev.revId));
+                    const revNr = Number((rev.revId.slice("-"))[1]);
+                    if (pgD.nextRevNr <= revNr) {
+                        pgD.nextRevNr = revNr +1;
+                    }
                 });
                 this.pgDetails.set(det.pgId, pgD);
             })
         });
+    }
+
+    postReview(req, res) {
+        console.log("Review received with:");
+        console.log(req.body);
+        const pgId = Number(req.body.pgId);
+        if(!this.playgrounds.has(pgId)) {
+            // playground doesn't exist in database
+            console.log("review entry received for unknown pg " + pgId);
+            return res.json({
+                statusCde: 404,
+                message: "Playground not found!"
+            })
+        }
+        let pgD = this.pgDetails.get(pgId);
+        if (!pgD) {
+            pgD = new PlaygroundDetails();
+        }
+        pgD.reviews.push(new PlaygroundReview(req.body.user, req.body.revText, pgId + "-" + pgD.nextRevNr));
+        pgD.nextRevNr++;
+        this.pgDetails.set(pgId, pgD);
+    }
+
+    editReview(req, res) {
+        console.log("Review edit received with:");
+        console.log(req.body);
+        const pgId = Number(req.body.pgId);
+        if(this.pgDetails.has(pgId)) {
+            const reviews = this.pgDetails.get(pgId).reviews;
+            reviews.forEach(rev => {
+                if(rev.revId === req.body.revId && rev.user === req.body.user) {
+                    rev.text = req.body.revText;
+                    console.log("Review updated!");
+                    /*
+                    return res.json({
+                        statusCde: 200,
+                        message: "Review updated!"
+                    });
+
+                     */
+                }
+            });
+        }
+
+        // if we got till here the review was not found or from a different user
+        // this probably shouldn't happen
+        //console.log("Either the review ID was bad or the review was from a different user!");
+        //console.log("revID: " + revId + "; user: " + req.body.user);
+        /*
+        return res.json({
+            statusCde: 400,
+            message: "Either the review ID was bad or the review was from a different user!"
+        })
+         */
+    }
+
+    deleteReview(req, res) {
+        console.log("Review delete request received with:");
+        console.log(req.body);
+        const pgId = Number(req.body.pgId);
+        if(this.pgDetails.has(pgId)) {
+            const reviews = this.pgDetails.get(pgId).reviews;
+            for (let i = 0; i < reviews.length; i++) {
+                if(reviews[i].revId === req.body.revId && reviews[i].user === req.body.user) {
+                    const del = reviews.splice(i);
+                    console.log("Deleted review: " + del[0]);
+                    /*
+                    return res.json({
+                        statusCde: 200,
+                        message: "Review updated!"
+                    });
+
+                     */
+                }
+            }
+        }
     }
 }
 
