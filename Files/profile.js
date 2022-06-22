@@ -3,3 +3,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     welcome.textContent = "Hello " + localStorage.getItem("user") + "!";
 });
 
+function logoutProfile() {
+        localStorage.removeItem("loggedIn");
+        localStorage.removeItem("sessionId");
+        localStorage.removeItem("user");
+        window.location.href = "/";
+}
