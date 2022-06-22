@@ -113,7 +113,7 @@ async function submitReview(revText, pgId) {
         body: JSON.stringify(revData)
     })
         //.then(response => response.json());
-    location.reload();
+    //location.reload();
 }
 
 async function editReview(revText, pgId, revId) {
@@ -131,7 +131,7 @@ async function editReview(revText, pgId, revId) {
         body: JSON.stringify(revData)
     })
     //.then(response => response.json());
-    location.reload();
+    //location.reload();
 }
 
 async function deleteReview(pgId, revId) {
@@ -140,13 +140,13 @@ async function deleteReview(pgId, revId) {
         pgId: pgId,
         revId: revId
     }
-    const resp = await fetch("http://localhost:3000/api/reviews/delete", {
+    const resp = await fetch("http://localhost:3000/api/reviews/delete", { //fetch request wird abgeschickt
         method: "DELETE",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(revData)
+        body: JSON.stringify(revData)//es macht aus Objekt ein json String
     })
     //.then(response => response.json());
-    location.reload();
+    //location.reload();
 }

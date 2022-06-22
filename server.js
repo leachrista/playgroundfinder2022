@@ -1,27 +1,35 @@
 // source: https://nodejs.org/en/knowledge/HTTP/servers/how-to-create-a-HTTP-server/
 
-const http = require('http');
+//Server ist das Herzstück des Backend. Über diesen Server läuft.
 const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const express = require('express');
-const pgRouter = require('./api/routes/pg-router');
-const {response} = require("express");
-const cors = require("cors");
+const pgRouter = require('./api/routes/pg-router'); //Routes für die Anfragen gespeichert wo zum Backend gehen
+
+//const cors = require("cors");
 
 const app = express();
 const port = process.env.PORT ?? 3000;
 
 // Serving static files from folder 'files'
 app.use(express.static(path.join(__dirname, 'files')));
+/*
+cors is
+ */
+//app.use(cors());
 
-app.use(cors());
 
+/*
+parse cookie header and populate req.cookies with an object keyed by the cookie names.
+ */
 app.use(cookieParser());
 
-app.use(session({
-    secret: 'dsjklfgasdjfk45323fdksjf',
+
+//session middleware with the given options is implemented with app.use.session
+app.use(session({ //session für die sessionverwaltung. durch login erstellen wir eine session.
+    secret: 'dsjklfgasdjfk45323fdksjf', //passwort mit dem es verschlüsselt wird ?
     resave: false,
     saveUninitialized: true
 }))

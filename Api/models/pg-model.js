@@ -95,15 +95,15 @@ class PlaygroundDetails {
 class PlaygroundReview {
     constructor(user, text, revId) {
         this.user = user;
-        this.text = text;
-        this.revId = revId;
+        this.text = text; //text der im kommentar steht
+        this.revId = revId; //backend prüfen ob wir wirklich das löschen möchten...bug weil alle gelöscht werden
     }
 }
 
 class PlaygroundModel {
 
     constructor() {
-        this.playgrounds = new Map();
+        this.playgrounds = new Map(); //es ist eine ID kein Hash und somit eindeutig
         this.pgDetails = new Map();
         this.dataLoaded = false;
         this.live = false;
@@ -193,20 +193,28 @@ class PlaygroundModel {
     postReview(req, res) {
         console.log("Review received with:");
         console.log(req.body);
-        const pgId = Number(req.body.pgId);
-        if(!this.playgrounds.has(pgId)) {
+        const pgId = Number(req.body.pgId);//das request was wir geschickt bekommen hat ein body von dem wir zugehörige id holen.
+        if(!this.playgrounds.has(pgId)) { //gibts den Spielplatz mit der ID überhaupt?
             // playground doesn't exist in database
             console.log("review entry received for unknown pg " + pgId);
-            return res.json({
+            return res.json({ //wenn es mit review nicht geklappt hat gibt es response zurueck
                 statusCde: 404,
                 message: "Playground not found!"
             })
         }
-        let pgD = this.pgDetails.get(pgId);
-        if (!pgD) {
-            pgD = new PlaygroundDetails();
+        /*
+        wir haben im Backend zwei Maps.
+        1.) Spielplatzdaten...kommen von Stadt Wien
+        2.) Spielplatzdetails...die sammeln wir selber :)
+
+
+         */
+        let pgD = this.pgDetails.get(pgId); //wir holen uns mit der ID die zugehörigen Playgrounddetails
+        if (!pgD) { //gibts die? --> wenn nicht pg details
+            pgD = new PlaygroundDetails()//wir erstellen neue Details
         }
         pgD.reviews.push(new PlaygroundReview(req.body.user, req.body.revText, pgId + "-" + pgD.nextRevNr));
+        //hier fügen wir neues review hinzu weil wir body, Text bekommen
         pgD.nextRevNr++;
         this.pgDetails.set(pgId, pgD);
     }
@@ -252,7 +260,7 @@ class PlaygroundModel {
             const reviews = this.pgDetails.get(pgId).reviews;
             for (let i = 0; i < reviews.length; i++) {
                 if(reviews[i].revId === req.body.revId && reviews[i].user === req.body.user) {
-                    const del = reviews.splice(i);
+                    const del = reviews.splice(i, 1);
                     console.log("Deleted review: " + del[0]);
                     /*
                     return res.json({

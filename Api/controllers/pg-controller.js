@@ -19,10 +19,15 @@ class PgController {
         console.log("edit review request at controller with: " + req.params);
         res.send(model.editReview(req, res));
     }
-
+/*
+der Controller leitet es weiter an die zugehörige Methode im Model.
+ */
     deleteReview(req, res) {
         console.log("delete review request at controller with: " + req.params);
         res.send(model.deleteReview(req, res));
+        /*
+        in dem (req.) ist der body drinnen. user Lea pg ID 2 review 2-1., nichts ist gelöscht
+         */
     }
 }
 
