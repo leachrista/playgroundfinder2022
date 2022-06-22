@@ -19,10 +19,6 @@ a {
     flex-direction: row;
 }
 
-.blog-card-blog {
-    margin-top: 30px;
-}
-
 .blog-card {
     display: inline-block;
     position: relative;
@@ -44,6 +40,7 @@ a {
     border-radius: 6px;
     box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
+/*das ist ähnlich wie die paper miu damit das bild mit Rändern dargestellt wird*/
 
 .blog-card .blog-card-image img {
     max-width: 100%;
@@ -51,20 +48,12 @@ a {
     border-radius: 6px;
     pointer-events: none;
 }
+/*würde die max-width nicht existieren, erscheint das erste Bild riesig und man muss rüberscrollen*/
 
-.blog-card .blog-table {
-    padding: 15px 30px;
-}
 
-.blog-table {
-    margin-bottom: 0px;
-}
 
-.blog-category {
-    position: relative;
-    line-height: 0;
-    margin: 15px 0;
-}
+
+
 
 .blog-text-success {
 
@@ -80,19 +69,7 @@ a {
 
 }
 
-.fa {
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
 
-.blog-card-caption, .blog-card-caption a {
-    color: #333;
-    text-decoration: none;
-}
 
 p {
     color: #3C4857;
@@ -123,14 +100,4 @@ p {
     margin-right: 5px;
 }
 
-.blog-card .ftr .stats {
-    position: relative;
-    top: 1px;
-    font-size: 14px;
-}
 
-.blog-card .ftr .stats {
-    float: right;
-    line-height: 30px;
-}
-  
