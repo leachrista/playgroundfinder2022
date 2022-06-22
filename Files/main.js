@@ -67,5 +67,13 @@ function displayPlaygrounds(pgData) {
         pgArt.append(pgImg, pgA)
         top3Div.append(pgArt);
     }
+    function onclick searchFunktion(){
+        const comingSoon = document.createElement(h2);
+        comingSoon=textContent=("coming.soon");
+        document.querySelector(search).append();
+
+        
+    }
+
 
 }
