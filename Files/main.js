@@ -83,6 +83,7 @@ function displayPlaygrounds(pgData) {
         let pgImg = document.createElement("img");//Bilderstellung
         pgImg.src = "Images/Playground1.jpg"; //Bild befüllt
         let pgA = document.createElement("a");//Link erstellt
+        pgImg.alt ="Image for playground " + pgData[i].name + ", " + pgData[i].district + ". Bezirk";
         pgA.href = "pgDetails.html?pgId=" + pgData[i].pgId;//Link befüllt
         pgA.textContent = pgData[i].name + ", " + pgData[i].district + ". Bezirk";
         pgArt.append(pgImg, pgA);//wir fügen alle in das Artikelelement
