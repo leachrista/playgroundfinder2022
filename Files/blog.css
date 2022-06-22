@@ -16,7 +16,7 @@ a {
 
 .row {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .blog-card {
@@ -100,4 +100,8 @@ p {
     margin-right: 5px;
 }
 
-
+@media screen and (min-width: 720px) {
+    .row {
+        flex-direction: row;
+    }
+}

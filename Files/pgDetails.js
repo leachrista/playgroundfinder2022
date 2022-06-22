@@ -20,39 +20,44 @@ async function getDetails (pgId) {
     document.querySelector("#location").textContent = detailsData[0].district + ". Bezirk";
     document.querySelector("#image").src = "Images/Playground1.jpg";
     const reviewList = document.querySelector("#reviews");
+    reviewList.innerHTML = "";
     if (!detailsData[1]) {
         const revLi = document.createElement("li");
         revLi.textContent ="There are no reviews yet - why not write one?";
-        reviewList.append(revLi)
+        reviewList.append(revLi);
     } else {
         detailsData[1].reviews.forEach(rev => {
-            const revLi = document.createElement("li");
-            const revName = document.createElement("h3");
-            revName.textContent = rev.user;
-            const revTxt = document.createElement("p");
-            revTxt.textContent = rev.text;
-            revLi.append(revName, revTxt);
-            revLi.id = rev.revId;
-            if(rev.user === localStorage.getItem("user")) {
-                const editButton = document.createElement("button");
-                editButton.textContent = "Edit";
-                editButton.onclick = () => {
-                    onEditButtonClick(rev.revId, rev.text);
-                };
-                revLi.append(editButton);
-
-                const deleteButton = document.createElement("button");
-                deleteButton.textContent = "Delete";
-                deleteButton.onclick = () => {
-                    onDeleteButtonClick(rev.revId);
-                };
-                revLi.append(deleteButton);
-            }
-            reviewList.append(revLi);
-            console.log(revLi);
+            appendReview(rev.user, rev.text, rev.revId); // take the data for 1 review, make a review from it, add it to the list
         });
     }
     console.log(detailsData);
+}
+
+function appendReview(user, text, revId) {
+    const revLi = document.createElement("li");
+    const revName = document.createElement("h3");
+    revName.textContent = user;
+    const revTxt = document.createElement("p");
+    revTxt.textContent = text;
+    revLi.append(revName, revTxt);
+    revLi.id = revId;
+    if(user === localStorage.getItem("user")) {
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+        editButton.onclick = () => {
+            onEditButtonClick(revId, text);
+        };
+        revLi.append(editButton);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.onclick = () => {
+            onDeleteButtonClick(revId);
+        };
+        revLi.append(deleteButton);
+    }
+    document.querySelector("#reviews").append(revLi);
+    console.log(revLi);
 }
 
 function onEditButtonClick(revId, revText) {
@@ -112,8 +117,9 @@ async function submitReview(revText, pgId) {
         },
         body: JSON.stringify(revData)
     })
-        //.then(response => response.json());
-    //location.reload();
+
+    // reload reviews
+    getDetails(pgId);
 }
 
 async function editReview(revText, pgId, revId) {
@@ -129,9 +135,10 @@ async function editReview(revText, pgId, revId) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(revData)
-    })
-    //.then(response => response.json());
-    //location.reload();
+    });
+
+    // reload reviews
+    getDetails(pgId);
 }
 
 async function deleteReview(pgId, revId) {
@@ -146,7 +153,8 @@ async function deleteReview(pgId, revId) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(revData)//es macht aus Objekt ein json String
-    })
-    //.then(response => response.json());
-    //location.reload();
+    });
+
+    // reload reviews
+    getDetails(pgId);
 }

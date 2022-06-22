@@ -8,13 +8,27 @@ nav {
 nav ul {
     list-style-type: none;
     display: flex;
-    gap: 15px;
+    gap: 10px;
     justify-content: space-evenly;
 }
 
 nav ul li a {
     text-decoration: none;
     font-weight: bold;
+}
+
+#quicksearch {
+    grid-area: mquicksearch;
+}
+
+#quicksearch article {
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+}
+
+#quicksearch article img {
+    max-width: 90px;
 }
 
 #quicksearch label {
@@ -71,17 +85,12 @@ nav ul li a {
     text-align: center;
     color: orangered;
     font-family: cursive;
-    font-size: 60px;
+    font-size: 40px;
     font-weight: bolder;
 }
 
 
-#quicksearch article {
-    display: flex;
-    flex-direction: row;
-    height: 100px;
-    margin: 0px;
-}
+
 
 body {
     display: grid;
@@ -117,11 +126,6 @@ nav {
     grid-area: cNav;
 }
 
-#quicksearch {
-    grid-area: mquicksearch;
-
-}
-
 #weather {
     grid-area: mweather;
     margin-left: auto;
@@ -129,6 +133,7 @@ nav {
     align-self: end;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -150,8 +155,8 @@ nav {
 
 #map p {
     font-size: larger;
-    margin-right: 30px;
 }
+
 #map img {
     max-width: 90%;
 }
@@ -181,14 +186,22 @@ nav {
     }
     #map {
         flex-direction: row;
+        max-width: 100%;
     }
     #map article {
         max-width: 30%;
     }
+    #map p {
+        margin-right: 30px;
+    }
     #map img {
         max-width: 600px;
+        height: auto;
     }
     #top3 div{
         flex-direction: row;
+    }
+    #welcome {
+        font-size: 60px;
     }
 }

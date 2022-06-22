@@ -106,7 +106,7 @@ class PlaygroundModel {
         this.playgrounds = new Map(); //es ist eine ID kein Hash und somit eindeutig
         this.pgDetails = new Map();
         this.dataLoaded = false;
-        this.live = false;
+        this.live = true;
         this.loadPgData(); // NOTE: can it cause problems if this is done here??
         this.loadPgDetails();
     }
@@ -155,9 +155,6 @@ class PlaygroundModel {
                 data.features.forEach(pg => {
                     const playground = Playground.buildFrom(pg);
 
-                    // !!IMPORTANT!! maybe next line needs to read "model." rather than "this." to work from
-                    // all contexts??
-                    // If so: need to move initial loading away from constructor!!
                     this.addPlayground(playground);
                 })
             };
