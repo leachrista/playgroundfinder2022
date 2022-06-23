@@ -9,7 +9,7 @@ const errorContainer = document.querySelector("#errorContainer");
 const handleSubmit = async () => {
     //Prevent page reload
 
-    const uname = usernameInput.value;
+    const uname = usernameInput.value; //wir befüllen es mit einem Wert
     const pass = passwordInput.value;
 
     if(!uname || !pass) {
@@ -25,7 +25,17 @@ const handleSubmit = async () => {
     const restest = await fetch(LOGINURL, { /*await fetch('/LOGIN') starts an HTTP request to '/LOGIN' URL.
      Because the await keyword is present, the asynchronous function is paused 
     */
-        method: "POST",
+        method: "POST", /*
+        Mit der POST-Methode können Sie große Datenmengen (wie Bilder oder HTML-Formular-Daten) 
+        zur weiteren Verarbeitung zum Server senden. 
+        Die Daten werden beim Absenden des Formulars mit einer POST-Anfrage an den Server geschickt.
+        */
+
+        /*Post method always results in a server state change. If the POST method was idempotent,
+         everything sent and accepted to or from the web server would already have to exist on the server
+          in some form to respond with the same codes and value response.
+         For that reason, POST cannot be idempotent.
+        */
         headers: {
             'Content-Type': 'application/json'
         },
@@ -39,7 +49,7 @@ const handleSubmit = async () => {
     }
 
     // login success
-    localStorage.setItem("loggedIn", true);
+    localStorage.setItem("loggedIn", true); //we use localstorage to set the user name and id
     localStorage.setItem("sessionId", restest.sessionId);
     localStorage.setItem("user", restest.user);
     window.location.href = "/";
