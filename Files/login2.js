@@ -13,7 +13,7 @@ const handleSubmit = async () => {
     const pass = passwordInput.value;
 
     if(!uname || !pass) {
-        errorContainer.innerText = "You must fill the username and password fields";
+        errorContainer.innerText = "You must fill the username and password fields"; //errormeldung kann in jwt auch als 400 ausgegeben werden
         return 0;
     }
 
@@ -22,7 +22,9 @@ const handleSubmit = async () => {
         password: pass
     }
 
-    const restest = await fetch(LOGINURL, {
+    const restest = await fetch(LOGINURL, { /*await fetch('/LOGIN') starts an HTTP request to '/LOGIN' URL.
+     Because the await keyword is present, the asynchronous function is paused 
+    */
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -44,8 +46,9 @@ const handleSubmit = async () => {
 };
 
 const logout = () => {
-    localStorage.removeItem("loggedIn");
-    localStorage.removeItem("sessionId");
-    localStorage.removeItem("user");
+    localStorage.removeItem("loggedIn");//wir entfernen den login button
+    localStorage.removeItem("sessionId");//die session id
+    localStorage.removeItem("user");//den User
     window.location.href = "/";
+    
 }
